@@ -1,5 +1,6 @@
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
     @php
+    $routeName = Route::currentRouteName();
     function getInitials($inputString) {
         $words = explode(' ', $inputString); // Split the input string into words
         $initials = '';
@@ -11,7 +12,6 @@
         return $initials;
     }// Output: BN
     @endphp
-    <!--begin::Toolbar-->
     <div class="toolbar d-flex flex-stack mb-3 mb-lg-5" id="kt_toolbar">
         <!--begin::Container-->
         <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack flex-wrap">
@@ -176,7 +176,7 @@
                                 <!--begin::Avatar-->
                                 <div class="symbol symbol-100px symbol-circle mb-7  text-uppercase">
                                     {{  getInitials($user->name)  }}
-                                    {{-- <img src="assets/media/avatars/300-6.jpg" alt="{{  getInitials($user->name)  }}" /> --}}
+                                    <img src="assets/media/avatars/300-6.jpg" alt="{{  getInitials($user->name)  }}" />
                                 </div>
                                 <!--end::Avatar-->
                                 <!--begin::Name-->
@@ -191,7 +191,7 @@
                                 <!--end::Position-->
                                 <!--begin::Info-->
                                 <!--begin::Info heading-->
-                                <div class="fw-bold mb-3">Assigned Tickets
+                                {{-- <div class="fw-bold mb-3">Assigned Tickets
                                 <span class="ms-2" ddata-bs-toggle="popover" data-bs-trigger="hover" data-bs-html="true" data-bs-content="Number of support tickets assigned, closed and pending this week.">
                                     <i class="ki-duotone ki-information fs-7">
                                         <span class="path1"></span>
@@ -237,7 +237,7 @@
                                         <div class="fw-semibold text-muted">Open</div>
                                     </div>
                                     <!--end::Stats-->
-                                </div>
+                                </div> --}}
                                 <!--end::Info-->
                             </div>
                             <!--end::User Info-->
@@ -290,10 +290,10 @@
                                     <!--begin::Details item-->
                                     <div class="fw-bold mt-5">Phone Number</div>
                                     <div class="text-gray-600">{{ App\Models\User::details($user->id) !== null ?  App\Models\User::details($user->id)->phone_number : ''}}</div>
-
+    
                                     <div class="fw-bold mt-5">Provider</div>
                                     <div class="text-gray-600">{{ App\Models\User::details($user->id) !== null ?  App\Models\User::details($user->id)->service : ''}} Service Provider</div>
-
+    
                                     <div class="fw-bold mt-5">Phone Number</div>
                                     <div class="text-gray-600">25 Jul 2023, 8:43 pm</div>
                                     <!--begin::Details item-->
@@ -430,7 +430,7 @@
                         <!--end:::Tab item-->
                         <!--begin:::Tab item-->
                         <li class="nav-item">
-                            <a class="nav-link text-active-primary pb-4 active" data-kt-countup-tabs="true" data-bs-toggle="tab" href="#kt_user_view_overview_security">Uploads</a>
+                            {{-- <a class="nav-link text-active-primary pb-4 active" data-kt-countup-tabs="true" data-bs-toggle="tab" href="#kt_user_view_overview_security">Uploads</a> --}}
                         </li>
                         <!--end:::Tab item-->
                         <!--begin:::Tab item-->
@@ -616,7 +616,7 @@
                                     <!--begin::Card title-->
                                     <div class="card-title flex-column">
                                         <h2>Uploading Documents</h2>
-                                        {{-- <div class="fs-6 fw-semibold text-muted">Choose what messages you’d like to receive for each of your accounts.</div> --}}
+                                        <div class="fs-6 fw-semibold text-muted">Choose what messages you’d like to receive for each of your accounts.</div>
                                     </div>
                                     <!--end::Card title-->
                                 </div>
@@ -649,7 +649,7 @@
                                         <!--end::Item-->
                                         <div class='separator separator-dashed my-5'></div>
                                         @empty
-
+    
                                         @endforelse
                                         
                                         <!--begin::Action buttons-->
@@ -660,7 +660,6 @@
                                 <!--begin::Card footer-->
                                 <!--end::Card footer-->
                             </div>
-                            <!--end::Card-->
                         </div>
                         <!--end:::Tab pane-->
                         <!--begin:::Tab pane-->
@@ -726,7 +725,7 @@
                             
                             <!--end::Card-->
                             <!--begin::Card-->
-                            {{-- <div class="card pt-4 mb-6 mb-xl-9">
+                            <div class="card pt-4 mb-6 mb-xl-9">
                                 <!--begin::Card header-->
                                 <div class="card-header border-0">
                                     <!--begin::Card title-->
@@ -820,7 +819,7 @@
                                     <!--end::Table-->
                                 </div>
                                 <!--end::Card body-->
-                            </div> --}}
+                            </div>
                             <!--end::Card-->
                         </div>
                         <!--end:::Tab pane-->
@@ -864,7 +863,7 @@
                                     <input type="hidden" name="user_id" value="{{ $user->id }}">
                                     <input type="hidden" name="user_email" value="{{ $user->email }}">
                                     <input type="hidden" name="new_status" value="1">
-
+    
                                 </div>
                                 <!--end::Scroll-->
                             </div>
@@ -888,7 +887,7 @@
                     </div>
                 </div>
             </div>
-
+    
             <div class="modal fade" id="kt_modal_update_details2" tabindex="-1" aria-hidden="true">
                 <!--begin::Modal dialog-->
                 <div class="modal-dialog modal-dialog-centered mw-650px">
@@ -921,7 +920,7 @@
                                     <input type="hidden" name="user_id" value="{{ $user->id }}">
                                     <input type="hidden" name="user_email" value="{{ $user->email }}">
                                     <input type="hidden" name="new_status" value="0">
-
+    
                                 </div>
                                 <!--end::Scroll-->
                             </div>
@@ -1620,5 +1619,4 @@
         </div>
         <!--end::Container-->
     </div>
-    <!--end::Post-->
 </div>

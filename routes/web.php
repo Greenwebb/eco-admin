@@ -21,6 +21,7 @@ use App\Livewire\Users\GuestListView;
 use App\Livewire\Users\PaymentProviderListView;
 use App\Livewire\Users\SellerListView;
 use App\Livewire\Users\UserView;
+use App\Livewire\Users\ViewSeller;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -51,7 +52,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::get('/payment-providers', PaymentProviderListView::class)->name('payment-providers'); 
     Route::get('/marketplace-users', GuestListView::class)->name('marketplace-users'); 
     Route::get('/users/{id}', UserView::class)->name('view-user'); 
-    Route::get('/users/{id}', UserView::class)->name('view-user'); 
+    Route::get('/seller/{id}', ViewSeller::class)->name('view-seller'); 
     Route::post('/user-approve-now', [eUserController::class, 'approve'])->name('user.approve');
     
     //Products

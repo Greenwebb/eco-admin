@@ -568,7 +568,7 @@
                                 <td class="d-flex align-items-center">
                                     <!--begin:: Avatar -->
                                     <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
-                                        <a href="{{ route('view-user', $f->id) }}">
+                                        <a href="{{ route('view-seller', $f->id) }}">
                                             <div class="symbol-label fs-3 bg-light-danger text-danger">{{  getInitials($f->name)  }}</div>
                                         </a>
                                     </div>
@@ -576,7 +576,7 @@
                                     <!--end::Avatar-->
                                     <!--begin::User details-->
                                     <div class="d-flex flex-column">
-                                        <a href="{{ route('view-user', $f->id) }}" class="text-gray-800 text-hover-primary mb-1">{{ $f->name }}</a>
+                                        <a href="{{ route('view-seller', $f->id) }}" class="text-gray-800 text-hover-primary mb-1">{{ $f->name }}</a>
                                         <span>{{ $f->email ?? '' }}</span>
                                         <span> {{ App\Models\User::details($f->global_id) !== null ?  App\Models\User::details($f->global_id)->phone_number : ''}} </span>
 
@@ -611,15 +611,15 @@
                                     <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
                                         <!--begin::Menu item-->
                                         <div class="menu-item px-3">
-                                            <a href="{{ route('view-user', $f->id) }}" class="menu-link px-2">View</a>
+                                            <a href="{{ route('view-seller', $f->id) }}" class="menu-link px-2">View</a>
                                         </div>
                                         @if ($f->is_approved == 1)
                                         <div class="menu-item px-3">
-                                            <a href="{{ route('view-user', $f->id) }}" class="menu-link px-2 bg-danger text-white">Disapprove</a>
+                                            <a href="{{ route('view-seller', $f->id) }}" class="menu-link px-2 bg-danger text-white">Disapprove</a>
                                         </div>
                                         @else
                                         <div class="menu-item px-3">
-                                            <a href="{{ route('view-user', $f->id) }}" class="menu-link px-2 bg-success text-white">Activate</a>
+                                            <a href="{{ route('view-seller', $f->id) }}" class="menu-link px-2 bg-success text-white">Activate</a>
                                         </div>
                                         @endif
                                         {{-- <div class="menu-item px-3">

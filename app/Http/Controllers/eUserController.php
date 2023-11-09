@@ -80,13 +80,13 @@ class eUserController extends Controller
                 // Assuming 'users' is the table name where user status needs to be updated
                 DB::connection('second_database')
                     ->table('users')
-                    ->where('id', $request->input('user_id')) // Replace $userId with the appropriate user ID
+                    ->where('id', (int)$request->input('user_id')) // Replace $userId with the appropriate user ID
                     ->update(['is_approved' => 1]);
                     return redirect()->back()->with('success',    'Account approved successfully');
             }else{
                 DB::connection('second_database')
                 ->table('users')
-                ->where('id', $request->input('user_id')) // Replace $userId with the appropriate user ID
+                ->where('id', (int)$request->input('user_id')) // Replace $userId with the appropriate user ID
                 ->update([
                     'is_approved' => 0,
                     'is_type' => 'buyer'
@@ -102,7 +102,7 @@ class eUserController extends Controller
             // Rollback the transaction in case of an error
             DB::connection('second_database')->rollback();
 
-            return redirect()->back()->with('error',    $th->getMessage());
+            return redirect()->back()->with('error',    $e->getMessage());
         }
 
     }

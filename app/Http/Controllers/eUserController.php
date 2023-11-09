@@ -7,6 +7,7 @@ use App\Notifications\AccountApproved;
 use App\Notifications\AccountDisapproved;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\DB;
 class eUserController extends Controller
 {
     /**
@@ -49,24 +50,61 @@ class eUserController extends Controller
         //
     }
 
-    public function approve(Request $request){
-        try {
-            User::where("id", $request->input('user_id'))->update(["is_approved"=> $request->input('new_status')]);
-            $user = User::where('email', $request->input('user_email'))->first();
-            // Send notification to multiple users
-            if($request->input('new_status')){
+    // public function approve(Request $request){
+    //     try {
+    //         User::where("id", $request->input('user_id'))->update(["is_approved"=> $request->input('new_status')]);
+    //         $user = User::where('email', $request->input('user_email'))->first();
+    //         // Send notification to multiple users
+    //         if($request->input('new_status')){
 
-                Notification::route('mail', $request->input('user_email'))->notify(new AccountApproved($user));
-                return redirect()->back()->with('success',    'Account approved successfully');
-            }else{
+    //             Notification::route('mail', $request->input('user_email'))->notify(new AccountApproved($user));
+    //             return redirect()->back()->with('success',    'Account approved successfully');
+    //         }else{
                     
-                Notification::route('mail', $request->input('user_email'))->notify(new AccountDisapproved($user));
+    //             Notification::route('mail', $request->input('user_email'))->notify(new AccountDisapproved($user));
+    //             return redirect()->back()->with('success',    'Account disapproved successfully');
+    //         }
+    //     } catch (\Throwable $th) {
+    //         return redirect()->back()->with('error',    $th->getMessage());
+    //     }
+        
+    // }
+
+    public function approve(Request $request){
+
+        // Start the transaction
+        DB::connection('second_database')->beginTransaction();
+
+        try {
+            if($request->input('new_status')){
+                // Assuming 'users' is the table name where user status needs to be updated
+                DB::connection('second_database')
+                    ->table('users')
+                    ->where('id', $request->input('user_id')) // Replace $userId with the appropriate user ID
+                    ->update(['is_approved' => 1]);
+                    return redirect()->back()->with('success',    'Account approved successfully');
+            }else{
+                DB::connection('second_database')
+                ->table('users')
+                ->where('id', $request->input('user_id')) // Replace $userId with the appropriate user ID
+                ->update([
+                    'is_approved' => 0,
+                    'is_type' => 'buyer'
+                ]);
                 return redirect()->back()->with('success',    'Account disapproved successfully');
             }
-        } catch (\Throwable $th) {
+            // Commit the transaction
+            DB::connection('second_database')->commit();
+
+            // Add a success message
+            session()->flash('successMessage', 'Product inserted successfully.');
+        } catch (\Exception $e) {
+            // Rollback the transaction in case of an error
+            DB::connection('second_database')->rollback();
+
             return redirect()->back()->with('error',    $th->getMessage());
         }
-        
+
     }
 
     /**

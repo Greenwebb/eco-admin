@@ -73,7 +73,7 @@ class eUserController extends Controller
     public function approve(Request $request){
 
         // Start the transaction
-        DB::connection('second_database')->beginTransaction();
+        // DB::connection('second_database')->beginTransaction();
 
         try {
             if($request->input('new_status')){
@@ -82,6 +82,7 @@ class eUserController extends Controller
                     ->table('users')
                     ->where('id', (int)$request->input('user_id')) // Replace $userId with the appropriate user ID
                     ->update(['is_approved' => 1]);
+                    
                     return redirect()->back()->with('success',    'Account approved successfully');
             }else{
                 DB::connection('second_database')
@@ -94,13 +95,13 @@ class eUserController extends Controller
                 return redirect()->back()->with('success',    'Account disapproved successfully');
             }
             // Commit the transaction
-            DB::connection('second_database')->commit();
+            // DB::connection('second_database')->commit();
 
             // Add a success message
             session()->flash('successMessage', 'Product inserted successfully.');
         } catch (\Exception $e) {
             // Rollback the transaction in case of an error
-            DB::connection('second_database')->rollback();
+            // DB::connection('second_database')->rollback();
 
             return redirect()->back()->with('error',    $e->getMessage());
         }

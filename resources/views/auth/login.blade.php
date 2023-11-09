@@ -51,7 +51,7 @@
           <div class="row gx-0">
             <div class="col-11 col-md-10 mx-auto">
               <p class="text-end text-2 text-muted fw-300">
-                Not a member? <a class="fw-300" href="https://auth.ecoagrozm.com/register?source={{$source}}&destination={{$destination}}">Sign up now</a>
+                {{-- Not a member? <a class="fw-300" href="https://auth.ecoagrozm.com/register?source={{$source}}&destination={{$destination}}">Sign up now</a> --}}
               </p>
             </div>
           </div>
@@ -126,7 +126,7 @@
           </div>
           <div class="row g-0 my-auto">
             <div class="col-11 col-md-10 mx-auto">
-              <h1 class="text-13 fw-300 mb-4">Join the largest Farming community.</h1>
+              <h1 class="text-13 fw-300 mb-4">For Administration Use </h1>
             </div>
           </div>
         </div>

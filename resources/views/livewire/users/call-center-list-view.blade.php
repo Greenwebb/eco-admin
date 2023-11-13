@@ -542,7 +542,7 @@ function getInitials($inputString) {
                 <!--begin::Card body-->
                 <div class="card-body py-4">
                     <!--begin::Table-->
-                    @if(!empty($bpos->toArray()))
+                    @if($bpos != null)
                     <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_users">
                         <thead>
                             <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">

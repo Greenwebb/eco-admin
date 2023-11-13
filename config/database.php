@@ -111,6 +111,36 @@ return [
         //     // ]) : [],
         // ],
 
+        // 'auth_database' => [
+        //     'driver' => 'mysql',
+        //     'host' => 'localhost',
+        //     'port' => '3306',
+        //     'database' => 'eco_auth',
+        //     'username' => 'root',
+        //     'password' => '',
+        //     'charset' => 'utf8mb4',
+        //     'collation' => 'utf8mb4_unicode_ci',
+        //     'prefix' => '',
+        //     'prefix_indexes' => true,
+        //     'strict' => true,
+        //     'engine' => null,
+        // ],
+
+        'auth_database' => [
+            'driver' => 'mysql',
+            'host' => 'localhost',
+            'port' => '3306',
+            'database' => 'u870995244_admin_auth',
+            'username' => 'u870995244_adminroot',
+            'password' => 'George.@123',
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+        ],
+
         'second_database' => [
             'driver' => 'mysql',
             'host' => 'localhost',
@@ -124,9 +154,6 @@ return [
             'prefix_indexes' => true,
             'strict' => true,
             'engine' => null,
-            // 'options' => extension_loaded('pdo_mysql') ? array_filter([
-            //     PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
-            // ]) : [],
         ],
     ],
 

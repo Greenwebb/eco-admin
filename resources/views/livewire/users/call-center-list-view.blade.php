@@ -1,4 +1,16 @@
-
+{{-- 
+@php
+function getInitials($inputString) {
+    $words = explode(' ', $inputString); // Split the input string into words
+    $initials = '';
+    
+    foreach ($words as $word) {
+        $initials .= strtoupper($word[0]); // Convert the first character to uppercase
+    }
+    
+    return $initials;
+}// Output: BN
+@endphp --}}
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
     <!--begin::Toolbar-->
     <div class="toolbar d-flex flex-stack mb-3 mb-lg-5" id="kt_toolbar">
@@ -7,7 +19,7 @@
             <!--begin::Page title-->
             <div class="page-title d-flex flex-column me-5 py-2">
                 <!--begin::Title-->
-                <h1 class="d-flex flex-column text-dark fw-bold fs-3 mb-0">Call Center List</h1>
+                <h1 class="d-flex flex-column text-dark fw-bold fs-3 mb-0">BPO Users List</h1>
                 <!--end::Title-->
                 <!--begin::Breadcrumb-->
                 <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 pt-1">
@@ -30,7 +42,7 @@
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="breadcrumb-item text-dark">Call Center List</li>
+                    <li class="breadcrumb-item text-dark">BPO Users List</li>
                     <!--end::Item-->
                 </ul>
                 <!--end::Breadcrumb-->
@@ -530,18 +542,6 @@
                 <!--begin::Card body-->
                 <div class="card-body py-4">
                     <!--begin::Table-->
-                    @php
-                    function getInitials($inputString) {
-                        $words = explode(' ', $inputString); // Split the input string into words
-                        $initials = '';
-                        
-                        foreach ($words as $word) {
-                            $initials .= strtoupper($word[0]); // Convert the first character to uppercase
-                        }
-                        
-                        return $initials;
-                    }// Output: BN
-                    @endphp
                     <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_users">
                         <thead>
                             <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
@@ -550,16 +550,16 @@
                                         <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_table_users .form-check-input" value="1" />
                                     </div>
                                 </th>
-                                <th class="min-w-125px">User</th>
-                                <th class="min-w-125px">Role</th>
-                                <th class="min-w-125px">Last login</th>
-                                <th class="min-w-125px">Two-step</th>
-                                <th class="min-w-125px">Joined Date</th>
-                                <th class="text-end min-w-100px">Actions</th>
+                                <th class="min-w-125px">Company Name</th>
+                                <th class="min-w-125px">Contact Person</th>
+                                <th class="min-w-125px">Contact Phone</th>
+                                <th class="min-w-90px">Email</th>
+                                <th class="min-w-100px">Location</th>
+                                {{-- <th class="text-end min-w-100px">Actions</th> --}}
                             </tr>
                         </thead>
                         <tbody class="text-gray-600 fw-semibold">
-                            @forelse ($guests as $f)
+                            @forelse ($bpos as $entity)
                             <tr>
                                 <td>
                                     <div class="form-check form-check-sm form-check-custom form-check-solid">
@@ -569,50 +569,77 @@
                                 <td class="d-flex align-items-center">
                                     <!--begin:: Avatar -->
                                     <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
-                                        <a href="{{ route('view-user', $f->id) }}">
-                                            <div class="symbol-label fs-3 bg-light-danger text-danger">{{  getInitials($f->name)  }}</div>
+                                        <a href="{{ route('view-seller', $entity->id) }}">
+                                            <div class="symbol-label fs-3 bg-light-danger text-danger">
+                                                {{-- {{  $entity->company_name }} --}}
+                                                <img width="30" src="data:image/png;base64,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" />
+                                            </div>
                                         </a>
                                     </div>
+
                                     <!--end::Avatar-->
                                     <!--begin::User details-->
                                     <div class="d-flex flex-column">
-                                        <a href="{{ route('view-user', $f->id) }}" class="text-gray-800 text-hover-primary mb-1">{{ $f->name }}</a>
-                                        <span>melody@altbox.com</span>
+                                        <span>{{ $entity->company_name ?? '' }}</span>
                                     </div>
                                     <!--begin::User details-->
                                 </td>
-                                <td>Analyst</td>
+                                <td class="uppercase">{{ $entity->name ?? '' }}</td>
+                            
                                 <td>
-                                    <div class="badge badge-light fw-bold">20 mins ago</div>
+                                    <div class="badge badge-light-success fw-bold">
+                                        {{ 
+                                        $entity->c_phone ?? ''
+                                        }}
+                                    </div>
                                 </td>
-                                <td>
-                                    <div class="badge badge-light-success fw-bold">Enabled</div>
-                                </td>
-                                <td>{{ $f->created_at->toFormattedDateString() }}</td>
-                                <td class="text-end">
+                                
+                                <td class="uppercase">{{ $entity->c_email ?? '' }}</td>
+                                <td class="uppercase">{{ $entity->c_country.' '.$entity->c_city }}</td>
+                                {{-- <td>
+                                    @switch($entity->is_approved)
+                                        @case(0)
+                                            <div class="badge badge-light-danger text-primary fw-bold">Pending</div>
+                                            @break
+                                        @case(1)
+                                            <div class="badge badge-light-success text-primary fw-bold">Approved</div>
+                                            @break
+                                        @case(2)
+                                            <div class="badge badge-light-danger text-primary fw-bold">Under Review</div>
+                                            @break
+                                        @default
+                                            <div class="badge badge-light-danger text-primary fw-bold">Inactive</div>
+                                    @endswitch
+                                </td> --}}
+                                {{-- <td>{{ $entity->created_at->toFormattedDateString() }}</td> --}}
+                                {{-- <td class="text-end">
                                     <a href="#" class="btn btn-light btn-active-light-primary btn-flex btn-center btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
                                     <i class="ki-duotone ki-down fs-5 ms-1"></i></a>
-                                    <!--begin::Menu-->
+                                  
                                     <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
-                                        <!--begin::Menu item-->
+                                        
                                         <div class="menu-item px-3">
-                                            <a href="#" class="menu-link px-3">Edit</a>
+                                            <a href="{{ route('view-seller', $entity->id) }}" class="menu-link px-2">View</a>
                                         </div>
-                                        <!--end::Menu item-->
-                                        <!--begin::Menu item-->
+                                        @if ($entity->is_approved == 1)
                                         <div class="menu-item px-3">
-                                            <a href="#" class="menu-link px-3" data-kt-users-table-filter="delete_row">Delete</a>
+                                            <a href="{{ route('view-seller', $entity->id) }}" class="menu-link px-2 bg-danger text-white">Disapprove</a>
                                         </div>
-                                        <!--end::Menu item-->
+                                        @else
+                                        <div class="menu-item px-3">
+                                            <a href="{{ route('view-seller', $entity->id) }}" class="menu-link px-2 bg-success text-white">Activate</a>
+                                        </div>
+                                        @endif
+                                        
                                     </div>
-                                    <!--end::Menu-->
-                                </td>
+                                   
+                                </td> --}}
                             </tr>
                             @empty
                                 
                             @endforelse
                             
-                            
+
                             {{--  
                             <tr>
                                 <td>

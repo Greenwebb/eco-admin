@@ -13,7 +13,7 @@ class CallCenterListView extends Component
 
     public function render()
     {
-        DB::connection('auth_database')->beginTransaction();
+        // DB::connection('auth_database')->beginTransaction();
 
         try {
             // Retrieve products from the second database
@@ -24,7 +24,7 @@ class CallCenterListView extends Component
                 ->orderBy('users.created_at', 'desc')
                 ->get();
             // Commit the transaction
-            DB::connection('auth_database')->commit();
+            // DB::connection('auth_database')->commit();
             // Pass the products data to the view
             return view('livewire.users.call-center-list-view')->layout('layouts.app');
         

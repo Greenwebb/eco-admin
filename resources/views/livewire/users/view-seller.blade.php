@@ -252,11 +252,11 @@
                             </div>
                             {{-- @dd($user[0]->is_approved) --}}
                             @if ($user[0]->is_approved !== '1')
-                            <span data-bs-toggle="tooltip" data-bs-trigger="hover" title="Approve as advisor">
+                            <span data-bs-toggle="tooltip" data-bs-trigger="hover" title="Approve as seller">
                                 <a href="#" class="btn btn-sm btn-light-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_update_details">Approve Now</a>
                             </span>
                             @else
-                            <span data-bs-toggle="tooltip" data-bs-trigger="hover" title="Dispprove as advisor">
+                            <span data-bs-toggle="tooltip" data-bs-trigger="hover" title="Dispprove as seller">
                                 <a href="#" class="btn btn-sm btn-light-danger" data-bs-toggle="modal" data-bs-target="#kt_modal_update_details2">Disapprove</a>
                             </span>
                             @endif

@@ -542,6 +542,7 @@ function getInitials($inputString) {
                 <!--begin::Card body-->
                 <div class="card-body py-4">
                     <!--begin::Table-->
+                    @if($bpos !== null)
                     <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_users">
                         <thead>
                             <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
@@ -692,6 +693,12 @@ function getInitials($inputString) {
                               --}}
                         </tbody>
                     </table>
+                    @else
+                    <div style="text-align: center; margin-top: 50px;">
+                        <img src="https://thumb1.shutterstock.com/mosaic_250/255170779/2192195861/stock-vector-no-result-data-document-or-file-not-found-concept-illustration-flat-design-vector-eps-modern-2192195861.jpg" style="width: 200px; height: auto; margin-bottom: 20px;">
+                        <p>No BPO Users Available.</p>
+                    </div>
+                    @endif
                     <!--end::Table-->
                 </div>
                 <!--end::Card body-->

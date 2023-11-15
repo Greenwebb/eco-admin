@@ -202,9 +202,10 @@
                                 </div>
                             </th>
                             <th class="min-w-200px">Product</th>
-                            <th class="text-end min-w-100px">SKU</th>
-                            <th class="text-end min-w-70px">Qty</th>
+                            <th class="text-end min-w-100px">Seller</th>
                             <th class="text-end min-w-100px">Price</th>
+                            <th class="text-end min-w-70px">Qty</th>
+                            <th class="text-end min-w-100px">Bid group</th>
                             <th class="text-end min-w-100px">Status</th>
                             <th class="text-end min-w-70px">Actions</th>
                         </tr>
@@ -234,12 +235,17 @@
                                     </div>
                                 </td>
                                 <td class="text-end pe-0">
-                                    <span class="fw-bold">{{ $product->sku }}</span>
+                                    <span class="fw-bold">{{ $product->seller_name }}</span>
+                                </td>
+                                <td class="text-end pe-0">
+                                    <span class="fw-bold">{{ $product->price }}</span>
                                 </td>
                                 <td class="text-end pe-0" data-order="{{ $product->qty }}">
-                                    <span class="fw-bold ms-3">{{ $product->qty }}</span>
+                                    <span class="fw-bold ms-3">{{ $product->shelf_qty + $product->warehouse_qty }}</span>
                                 </td>
-                                <td class="text-end pe-0">{{ $product->price }}</td>
+                                <td class="text-end pe-0 "data-bs-toggle="modal" data-bs-target="#kt_modal_new_address" data-order="{{ $product->id }}">
+                                    <div class="badge badge-default text-dark">Default</div>    
+                                </td>
                                 <td class="text-end pe-0"  data-bs-toggle="modal" data-bs-target="#kt_modal_new_address" data-order="{{ $product->status }}">
                                     <!--begin::Badges-->
                                     

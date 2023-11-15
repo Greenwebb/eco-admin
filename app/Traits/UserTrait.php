@@ -25,6 +25,13 @@ trait UserTrait
         ->get();
     }
 
+    public function bpo_users(){
+        return User::on('auth_database')->get();
+    }
+    public function bpo_user($id){
+        return User::on('auth_database')->where('id'. $id)->first();
+    }
+
     public function find($id)
     {
         return User::find($id);

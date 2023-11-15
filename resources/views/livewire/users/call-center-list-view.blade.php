@@ -561,6 +561,7 @@ function getInitials($inputString) {
                         </thead>
                         <tbody class="text-gray-600 fw-semibold">
                             @forelse ($bpos as $entity)
+                            {{-- @dd($entity) --}}
                             <tr>
                                 <td>
                                     <div class="form-check form-check-sm form-check-custom form-check-solid">
@@ -613,28 +614,28 @@ function getInitials($inputString) {
                                     @endswitch
                                 </td> --}}
                                 {{-- <td>{{ $entity->created_at->toFormattedDateString() }}</td> --}}
-                                {{-- <td class="text-end">
+                                <td class="text-end">
                                     <a href="#" class="btn btn-light btn-active-light-primary btn-flex btn-center btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
                                     <i class="ki-duotone ki-down fs-5 ms-1"></i></a>
                                   
                                     <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
                                         
                                         <div class="menu-item px-3">
-                                            <a href="{{ route('view-seller', $entity->id) }}" class="menu-link px-2">View</a>
+                                            <a href="{{ route('view-bpo', $entity->global_key) }}" class="menu-link px-2">View</a>
                                         </div>
                                         @if ($entity->is_approved == 1)
                                         <div class="menu-item px-3">
-                                            <a href="{{ route('view-seller', $entity->id) }}" class="menu-link px-2 bg-danger text-white">Disapprove</a>
+                                            <a href="{{ route('view-bpo', $entity->global_key) }}" class="menu-link px-2 bg-danger text-white">Disapprove</a>
                                         </div>
                                         @else
                                         <div class="menu-item px-3">
-                                            <a href="{{ route('view-seller', $entity->id) }}" class="menu-link px-2 bg-success text-white">Activate</a>
+                                            <a href="{{ route('view-bpo', $entity->global_key) }}" class="menu-link px-2 bg-success text-white">Activate</a>
                                         </div>
                                         @endif
                                         
                                     </div>
                                    
-                                </td> --}}
+                                </td>
                             </tr>
                             @empty
                                 
